@@ -4,7 +4,7 @@ class PrototypesController < ApplicationController
   before_action :contributor_confirmation, only: [:edit, :update, :destroy]
  
   def index
-     @prototypes = Prototype.all
+     @prototypes = Prototype.includes(:user)
   end
 
   def new
@@ -22,7 +22,6 @@ class PrototypesController < ApplicationController
   end
 
   def show 
-    @prototype = Prototype.find(params[:id])
     @comment = Comment.new
     @comments = @prototype.comments
    end
